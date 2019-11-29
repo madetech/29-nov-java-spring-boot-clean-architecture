@@ -31,4 +31,12 @@ class HorsefactsApplicationTests {
                 .andExpect(content().string("A random horse fact"));
     }
 
+    @Test
+    void canGetAnotherHorseFact() throws Exception {
+        given(getHorseFactUseCase.execute()).willReturn("Another horse fact");
+
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Another horse fact"));
+    }
 }
